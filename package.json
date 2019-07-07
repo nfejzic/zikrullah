@@ -2,6 +2,7 @@
   "name": "zikrullah",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://zikrullah.app/",
   "dependencies": {
     "flubber": "^0.4.2",
     "just-animate": "^2.6.2",
@@ -30,11 +31,7 @@
     "extends": "react-app"
   },
   "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
+    "production": [">0.2%", "not dead", "not op_mini all"],
     "development": [
       "last 1 chrome version",
       "last 1 firefox version",
