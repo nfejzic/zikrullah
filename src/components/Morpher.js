@@ -3,6 +3,8 @@ import React from "react";
 // timeline from just-animate. Used for animation. In this particular case, it's used for playing back SVG interpolation made by flubber
 import { timeline, interpolate } from "just-animate";
 
+//import stuff from react-spring -> used for animating <p> text
+
 import "../assets/style/main.scss";
 
 // import Flubber, library used for SVG Morphing animation / interpolation
@@ -11,25 +13,31 @@ let flubber = require("flubber");
 class Morpher extends React.Component {
   constructor() {
     super();
+    this.duration = 1000; // duration in milliseconds used for animations!
+
     let svgJSON = require("../assets/data/esmaul-husna.json").svgs;
 
+    // store JSON data as objects in state array of objects
     this.state = { svgData: [] };
     for (let data of svgJSON) {
       this.state.svgData.push(data);
     }
 
-    // this.state = { svgs: [], svgData: [] };
     this.counter = 0;
-
-    // @TODO implement this.state as objects.
-    // Objects should have following values:
-    // 1. SVG - loaded SVG file
-    // 2. Name - Transcription of arabic name
-    // 3. Meaning - The meaning of the arabic name
   }
 
   componentDidMount() {
     this.loadSVG();
+
+    // this.transition = useTransition(
+    //   this.state.svgData[this.counter].meaning,
+    //   null,
+    //   {
+    //     from: { opacity: 0 },
+    //     enter: { opacity: 1 },
+    //     leave: { opacity: 0 }
+    //   }
+    // );
   }
 
   loadSVG() {
@@ -174,7 +182,7 @@ class Morpher extends React.Component {
     this.animatePaths(
       { parentSVG: fromSVG, paths: fromPaths },
       { parentSVG: toSVG, paths: toPaths },
-      2000
+      this.duration
     );
   }
 
@@ -289,7 +297,22 @@ class Morpher extends React.Component {
     let stateSVG = this.state.svgData[0].svg;
     const svgHTML = typeof stateSVG !== "undefined" ? stateSVG.outerHTML : "";
 
-    document.body.onclick = () => this.morph("container");
+    let current = this.counter;
+    // let next =
+    //   this.counter + 1 >= this.state.svgData.length ? 0 : this.counter + 1;
+
+    let prev =
+      this.counter - 1 >= 0 ? this.counter - 1 : this.state.svgData.length - 1;
+    let evenSVG = current % 2 === 0 ? current : prev;
+    evenSVG = evenSVG >= this.state.svgData.length ? 0 : evenSVG;
+    let oddSVG = prev % 2 !== 0 ? prev : current;
+
+    document.getElementById("root").onclick = () => this.morph("container");
+
+    window.onload = () => {
+      let nameContainer = document.getElementById("name-meaning");
+      nameContainer.style = "transition-duration: " + this.duration + "ms";
+    };
 
     return (
       <div className="morpher">
@@ -299,10 +322,32 @@ class Morpher extends React.Component {
           xmlns="http://www.w3.org/2000/svg"
           dangerouslySetInnerHTML={{ __html: svgHTML }}
         ></svg>
-        <p>
-          {this.counter} |{this.state.svgData[this.counter].name}:{" "}
-          {this.state.svgData[this.counter].meaning}
-        </p>
+
+        <div id="nameContainer">
+          <div id="name-meaning">
+            <div className={current % 2 === 0 ? "enter" : "leave"}>
+              <p className="EH-name">{this.state.svgData[evenSVG].name}</p>
+              <p>{this.state.svgData[evenSVG].meaning}</p>
+            </div>
+            <div className={current % 2 === 1 ? "enter" : "leave"}>
+              <p className="EH-name">{this.state.svgData[oddSVG].name}</p>
+              <p>{this.state.svgData[oddSVG].meaning}</p>
+            </div>
+          </div>
+
+          {/* <Transition */}
+          {/*   items={this.counter} */}
+          {/*   from={{ opacity: 0, transform: "translate3d(0, 90px, 0)" }} */}
+          {/*   enter={{ opacity: 1, transform: "translate3d(0, 0, 0)" }} */}
+          {/*   leave={{ opacity: 0, transform: "translate3d(0, 90px, 0)" }} */}
+          {/* > */}
+          {/*   {item => props => ( */}
+          {/*     <p className="name-meaning" style={props}> */}
+          {/*       {this.state.svgData[item].meaning} */}
+          {/*     </p> */}
+          {/*   )} */}
+          {/* </Transition> */}
+        </div>
       </div>
     );
   }

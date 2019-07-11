@@ -1,3 +1,7 @@
+body {
+  pointer-events: pointer;
+}
+
 .App {
   text-align: center;
   box-sizing: border-box;
@@ -22,7 +26,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  font-size: 3rem;
   color: white;
 }
 
@@ -36,7 +40,7 @@
   margin: 0;
   display: flex;
   align-items: center;
-  // border: 1px solid red;
+  overflow: hidden;
 
   .morpher {
     pointer-events: none;
@@ -49,10 +53,171 @@
     padding: 5rem;
     flex-direction: column;
     align-items: center;
-    justify-content: space-around;
+    justify-content: space-evenly;
     overflow: visible;
-    // border: 1px solid blue;
+    // border: 1px solid green;
 
+    #nameContainer {
+      // border: 1px solid white;
+      width: 100%;
+      height: auto;
+      display: flex;
+
+      #name-meaning {
+        position: relative;
+        margin: 0px auto;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        // border: 1px solid red;
+        padding-bottom: 7rem;
+        // overflow: hidden;
+
+        div {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+
+          p {
+            display: relative;
+            margin: 0.5rem auto;
+
+            &.EH-name {
+              color: #61dafb;
+            }
+          }
+        }
+
+        .enter {
+          transition-duration: inherit;
+
+          transform: translateY(0px);
+          position: absolute;
+          // margin: 0px auto;
+          left: 0;
+          right: 0;
+          opacity: 1;
+        }
+
+        .leave {
+          transition-duration: inherit;
+          transform: translateY(5rem);
+
+          position: absolute;
+          margin: 0px auto;
+          left: 0;
+          right: 0;
+          opacity: 0;
+        }
+      }
+    }
+
+    button {
+      all: unset;
+    }
+
+    #container {
+      pointer-events: auto;
+      width: 75%;
+      height: 70%;
+      display: flex;
+      align-items: center;
+      justify-items: center;
+      justify-content: space-around;
+      overflow: visible;
+      // border: 1px solid white;
+      // box-sizing: content-box;
+
+      svg {
+        fill: white;
+        // stroke: white;
+        overflow: visible;
+
+        // &:hover {
+        //   fill: green;
+        //   stroke: white;
+        // }
+      }
+    }
+  }
+}
+
+@media (min-width: 320px) and (max-width: 480px) {
+  .App-header {
+    font-size: 1.5rem;
+  }
+
+  #appendToThisDiv {
+    .morpher {
+      display: flex;
+      // padding: 2rem;
+      width: 100%;
+      height: 100%;
+      margin: auto;
+      box-sizing: border-box;
+      padding: 5rem 0rem;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      overflow: visible;
+      // border: 1px solid green;
+
+      #nameContainer {
+        // border: 1px solid white;
+        width: 100%;
+        height: auto;
+        display: flex;
+
+        #name-meaning {
+          position: relative;
+          margin: 0px auto;
+          width: 100%;
+          display: flex;
+          flex-direction: column;
+          // border: 1px solid red;
+          padding-bottom: 7rem;
+          // overflow: hidden;
+
+          div {
+            display: flex;
+            flex-direction: column;
+            // align-items: center;
+            align-content: flex-start;
+            justify-content: flex-start;
+            padding: 0rem 1rem;
+            // border: 1px solid green;
+
+            p {
+              // border: 1px solid blue;
+              display: flexbox;
+              margin: 0.5rem auto;
+            }
+          }
+
+          .enter {
+            transition-duration: inherit;
+
+            transform: translateY(0px);
+            position: absolute;
+            // margin: 0px auto;
+            left: 0;
+            right: 0;
+            opacity: 1;
+          }
+
+          .leave {
+            transition-duration: inherit;
+            transform: translateY(5rem);
+
+            position: absolute;
+            margin: 0px auto;
+            left: 0;
+            right: 0;
+            opacity: 0;
+          }
+        }
+      }
+    }
     button {
       all: unset;
     }
