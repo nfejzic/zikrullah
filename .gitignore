@@ -19,7 +19,6 @@
 .env.production.local
 
 # tags file for nvim ctags
-./tags
 tags
 
 npm-debug.log*
