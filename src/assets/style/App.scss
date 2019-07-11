@@ -1,0 +1,84 @@
+.App {
+  text-align: center;
+  box-sizing: border-box;
+  // padding: 2rem;
+}
+
+.App-logo {
+  // animation: App-logo-spin infinite 20s linear;
+  // height: 80vh;
+  // max-width: 80vw;
+  // min-width: 99%;
+  pointer-events: none;
+  // fill: white;
+  // border: 1px solid white;
+}
+
+.App-header {
+  background-color: #282c34;
+  min-width: 100vw;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+#appendToThisDiv {
+  width: 100%;
+  height: 100vh;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  // border: 1px solid red;
+
+  .morpher {
+    pointer-events: none;
+    display: flex;
+    // padding: 2rem;
+    width: 80%;
+    height: 100%;
+    margin: auto;
+    box-sizing: border-box;
+    padding: 5rem;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    overflow: visible;
+    // border: 1px solid blue;
+
+    button {
+      all: unset;
+    }
+
+    #container {
+      pointer-events: auto;
+      width: 75%;
+      height: 70%;
+      display: flex;
+      align-items: center;
+      justify-items: center;
+      justify-content: space-around;
+      overflow: visible;
+      // border: 1px solid white;
+      // box-sizing: content-box;
+
+      svg {
+        fill: white;
+        // stroke: white;
+        overflow: visible;
+
+        // &:hover {
+        //   fill: green;
+        //   stroke: white;
+        // }
+      }
+    }
+  }
+}
