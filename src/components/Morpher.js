@@ -14,6 +14,9 @@ class Morpher extends React.Component {
   constructor() {
     super();
     this.duration = 1000; // duration in milliseconds used for animations!
+    this.counter = 0;
+    this.inAnimation = false;
+    this.lastTime = 0;
 
     let svgJSON = require("../assets/data/esmaul-husna.json").svgs;
 
@@ -22,22 +25,10 @@ class Morpher extends React.Component {
     for (let data of svgJSON) {
       this.state.svgData.push(data);
     }
-
-    this.counter = 0;
   }
 
   componentDidMount() {
     this.loadSVG();
-
-    // this.transition = useTransition(
-    //   this.state.svgData[this.counter].meaning,
-    //   null,
-    //   {
-    //     from: { opacity: 0 },
-    //     enter: { opacity: 1 },
-    //     leave: { opacity: 0 }
-    //   }
-    // );
   }
 
   loadSVG() {
@@ -50,11 +41,9 @@ class Morpher extends React.Component {
     //store paths into a paths array - this is used to load all the svgs
     for (let i = 0; i < 99; i++) {
       //insert fileName into path. File name is stored as fileNum property in JSON
-      let path = require("../assets/resources/SVG_final/EsmaulHusna/" +
+      svgPathsArray[i] = require("../assets/resources/SVG_final/EsmaulHusna/" +
         svgData[i].fileNum +
         ".svg");
-
-      svgPathsArray[i] = path;
     }
 
     this.getSVGs(svgPathsArray, svgPlaceholder);
@@ -73,14 +62,9 @@ class Morpher extends React.Component {
         //copy the state
         let stateCopy = { ...this.state.svgData };
 
-        //copy the item to modify
-        let dataItem = stateCopy[index];
+        //add SVG to item in stateCopy
+        stateCopy[index].svg = svgPlaceholder[index];
 
-        //add SVG to dataItem
-        dataItem.svg = svgPlaceholder[index];
-
-        //add SVG item to copy of State, and then set the State to the new item
-        stateCopy[index] = dataItem;
         this.setState(stateCopy);
 
         // this.setState({ svgs: svgPlaceholder });
@@ -106,62 +90,6 @@ class Morpher extends React.Component {
     this.setState(svgArray);
   }
 
-  morphSVG(fromSVGID, toSVGID) {
-    let fromSVG = document.getElementById(fromSVGID);
-    let toSVG = document.getElementById(toSVGID);
-
-    let fromPaths = Array.from(fromSVG.getElementsByTagName("path"));
-    let toPaths = Array.from(toSVG.getElementsByTagName("path"));
-
-    if (fromPaths.length - toPaths.length !== 0) {
-      let case1 = fromPaths.length < toPaths.length;
-      let case2 = fromPaths.length > toPaths.length;
-      let diff = case1
-        ? toPaths.length - fromPaths.length
-        : case2
-        ? fromPaths.length - toPaths.length
-        : 0;
-      for (let i = 0; i < diff; i++) {
-        let elemPath = document.createElementNS(
-          "http://www.w3.org/2000/svg",
-          "path"
-        );
-        let copyPath = case1
-          ? fromPaths[fromPaths.length - 1]
-          : toPaths[toPaths.length - 1];
-        elemPath.setAttributeNS(null, "d", copyPath.getAttribute("d"));
-        if (case1) fromSVG.getElementsByTagName("g")[0].appendChild(elemPath);
-        if (case2) toSVG.getElementsByTagName("g")[0].appendChild(elemPath);
-        // fromSVG.appendChild(elemPath);
-        (case1 ? fromPaths : toPaths).push(elemPath);
-
-        // console.log(elemPath);
-      }
-    }
-
-    let t1 = timeline();
-
-    for (let i = 0; i < fromPaths.length; i++) {
-      let fromPathID = (fromPaths[i].id = fromSVGID + "Path" + i);
-
-      let fromD = fromPaths[i].getAttribute("d");
-      let toD = toPaths[i].getAttribute("d");
-
-      let target = "#" + fromPathID;
-
-      t1.fromTo(0, 500, {
-        targets: target,
-        props: {
-          d: {
-            value: [fromD, toD],
-            interpolate: flubber.interpolate
-          }
-        }
-      });
-      t1.play({ alternate: true, repeat: 2 });
-    }
-  }
-
   morphSVGElementToArray(parentElement, toSVGindex) {
     let container = document.getElementById(parentElement);
     let fromSVG = container.firstChild;
@@ -176,8 +104,8 @@ class Morpher extends React.Component {
     );
 
     //sort the paths here, from smallest to largest!
-    // fromPaths.sort((a, b) => this.sortString(a, b));
-    // toPaths.sort((a, b) => this.sortString(a, b));
+    fromPaths.sort((a, b) => this.sortString(a, b));
+    toPaths.sort((a, b) => this.sortString(a, b));
 
     this.animatePaths(
       { parentSVG: fromSVG, paths: fromPaths },
@@ -189,6 +117,10 @@ class Morpher extends React.Component {
   animatePaths(from, to, duration) {
     let fromPaths = from.paths;
     let fromSVG = from.parentSVG;
+
+    // set to stroke at the beginning of the animation!
+    fromSVG.classList.remove("fill");
+    fromSVG.classList.add("stroke");
 
     let toPaths = to.paths;
     let toSVG = to.parentSVG;
@@ -231,7 +163,12 @@ class Morpher extends React.Component {
         }
       }
     });
-    t2.play();
+    t2.play().on("finish", () => {
+      this.inAnimation = false;
+      fromSVG.classList.remove("stroke");
+      fromSVG.classList.add("fill");
+      console.log("Juhuuu!");
+    });
   }
 
   equalizeNumOfPaths(from, to) {
@@ -287,31 +224,42 @@ class Morpher extends React.Component {
   }
 
   morph(container) {
-    this.counter =
-      this.counter === this.state.svgData.length - 1 ? 0 : this.counter + 1;
-    this.morphSVGElementToArray(container, this.counter);
+    if (this.inAnimation) return;
+
+    this.inAnimation = true;
+    console.log(container);
+    this.counter++;
+    this.morphSVGElementToArray(
+      container,
+      this.counter % this.state.svgData.length
+    );
+
+    this.lastTime = Date.now();
     this.forceUpdate();
   }
 
   render() {
-    let stateSVG = this.state.svgData[0].svg;
-    const svgHTML = typeof stateSVG !== "undefined" ? stateSVG.outerHTML : "";
-
-    let current = this.counter;
-    // let next =
-    //   this.counter + 1 >= this.state.svgData.length ? 0 : this.counter + 1;
-
     let prev =
       this.counter - 1 >= 0 ? this.counter - 1 : this.state.svgData.length - 1;
-    let evenSVG = current % 2 === 0 ? current : prev;
-    evenSVG = evenSVG >= this.state.svgData.length ? 0 : evenSVG;
-    let oddSVG = prev % 2 !== 0 ? prev : current;
 
-    document.getElementById("root").onclick = () => this.morph("container");
+    let evenSVG = this.counter % 2 === 0 ? this.counter : prev;
+    evenSVG = evenSVG % this.state.svgData.length;
+
+    let oddSVG = prev % 2 !== 0 ? prev : this.counter;
+    oddSVG = oddSVG % this.state.svgData.length;
 
     window.onload = () => {
+      // set initial SVG display!
+      let stateSVG = this.state.svgData[this.counter].svg;
+      let svgHTML = typeof stateSVG !== "undefined" ? stateSVG.outerHTML : "";
+      document.getElementById("container").innerHTML = svgHTML;
+
       let nameContainer = document.getElementById("name-meaning");
       nameContainer.style = "transition-duration: " + this.duration + "ms";
+    };
+
+    document.getElementById("root").onclick = () => {
+      this.morph("container");
     };
 
     return (
@@ -320,33 +268,19 @@ class Morpher extends React.Component {
           id="container"
           className="App-logo"
           xmlns="http://www.w3.org/2000/svg"
-          dangerouslySetInnerHTML={{ __html: svgHTML }}
         ></svg>
 
         <div id="nameContainer">
           <div id="name-meaning">
-            <div className={current % 2 === 0 ? "enter" : "leave"}>
+            <div className={this.counter % 2 === 0 ? "enter" : "leave"}>
               <p className="EH-name">{this.state.svgData[evenSVG].name}</p>
               <p>{this.state.svgData[evenSVG].meaning}</p>
             </div>
-            <div className={current % 2 === 1 ? "enter" : "leave"}>
+            <div className={this.counter % 2 === 1 ? "enter" : "leave"}>
               <p className="EH-name">{this.state.svgData[oddSVG].name}</p>
               <p>{this.state.svgData[oddSVG].meaning}</p>
             </div>
           </div>
-
-          {/* <Transition */}
-          {/*   items={this.counter} */}
-          {/*   from={{ opacity: 0, transform: "translate3d(0, 90px, 0)" }} */}
-          {/*   enter={{ opacity: 1, transform: "translate3d(0, 0, 0)" }} */}
-          {/*   leave={{ opacity: 0, transform: "translate3d(0, 90px, 0)" }} */}
-          {/* > */}
-          {/*   {item => props => ( */}
-          {/*     <p className="name-meaning" style={props}> */}
-          {/*       {this.state.svgData[item].meaning} */}
-          {/*     </p> */}
-          {/*   )} */}
-          {/* </Transition> */}
         </div>
       </div>
     );
