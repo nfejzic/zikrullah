@@ -5,5 +5,7 @@
 1. this.inAnimation boolean variable exists. It return true if SVG is currently in animation, false otherwise
 2. this.inAnimation is used to prevent user from clicking during animation. Clicks are cancelled.
 3. SVG style is now changed to outline while under animation, and to fill when animation finishes.
+4. Setting initial SVG element in getSVG method. This is a must, so that the initial SVG is set AFTER loading at least the first SVG.
+5. Added this.started boolean. This is used for setting initial SVG, so that the SVG is set only once, not 99 times as the SVGs load.
 
 This is made possible by using just animate timelines 'on' function. timeline.on("finish", () => ...).

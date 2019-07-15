@@ -17,6 +17,7 @@ class Morpher extends React.Component {
     this.counter = 0;
     this.inAnimation = false;
     this.lastTime = 0;
+    this.started = false;
 
     let svgJSON = require("../assets/data/esmaul-husna.json").svgs;
 
@@ -67,6 +68,15 @@ class Morpher extends React.Component {
 
         this.setState(stateCopy);
 
+        if (!this.started) {
+          // set initial SVG display!
+          let stateSVG = this.state.svgData[this.counter].svg;
+          let svgHTML =
+            typeof stateSVG !== "undefined" ? stateSVG.outerHTML : "";
+          document.getElementById("container").innerHTML = svgHTML;
+        }
+
+        this.started = true;
         // this.setState({ svgs: svgPlaceholder });
         if (pathsArray.length !== 0) {
           this.getSVGs(pathsArray, svgPlaceholder);
@@ -249,11 +259,6 @@ class Morpher extends React.Component {
     oddSVG = oddSVG % this.state.svgData.length;
 
     window.onload = () => {
-      // set initial SVG display!
-      let stateSVG = this.state.svgData[this.counter].svg;
-      let svgHTML = typeof stateSVG !== "undefined" ? stateSVG.outerHTML : "";
-      document.getElementById("container").innerHTML = svgHTML;
-
       let nameContainer = document.getElementById("name-meaning");
       nameContainer.style = "transition-duration: " + this.duration + "ms";
     };
