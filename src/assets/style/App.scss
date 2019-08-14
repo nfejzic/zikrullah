@@ -178,7 +178,9 @@ body {
           overflow: visible;
 
           &.fill {
-            stroke: none;
+            stroke: white;
+            stroke-opacity: 1;
+            stroke-width: 5px;
             fill: white;
           }
           &.stroke {
@@ -186,7 +188,6 @@ body {
             stroke: white;
             stroke-opacity: 1;
             stroke-width: 5px;
-            stroke-miterlimit: 1rem;
           }
         }
       }
