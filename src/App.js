@@ -3,7 +3,6 @@ import "./assets/style/main.scss";
 import React from "react";
 
 // Morpher component
-import Morpher from "./components/Morpher";
 import { MorpherWithHooks } from "./components/MorpherWithHooks";
 
 function App() {

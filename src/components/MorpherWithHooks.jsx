@@ -97,9 +97,9 @@ export const MorpherWithHooks = props => {
     let fromPaths = from.paths;
     let fromSVG = from.parentSVG;
 
-    // set to stroke at the beginning of the animation!
-    fromSVG.classList.remove("fill");
-    fromSVG.classList.add("stroke");
+    // uncomment these lines to set specific classes on static and animating svg
+    // fromSVG.classList.remove("fill");
+    // fromSVG.classList.add("stroke");
 
     let toPaths = to.paths;
     let toSVG = to.parentSVG;
@@ -144,8 +144,10 @@ export const MorpherWithHooks = props => {
     });
     t2.play().on("finish", () => {
       setPlaying(false);
-      fromSVG.classList.remove("stroke");
-      fromSVG.classList.add("fill");
+      //Uncomment these lines to use specific classes on animated or static svg
+      //
+      // fromSVG.classList.remove("stroke");
+      // fromSVG.classList.add("fill");
       // console.log("Juhuuu!");
     });
   }

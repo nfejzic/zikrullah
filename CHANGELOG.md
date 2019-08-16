@@ -5,6 +5,7 @@
 1. Now using function based React Components with React Hooks
 2. New custom React Component -> NameSwapper - used for animation and display of name and meaning under animation
 3. Using modified SVGs - used Knife tool in Adobe Illustrator to make cuts on every hole in SVG files. This way the holes are not filled during the animation, but animated, like it should be
+4. Removed stroke style for animated SVG...
 
 ## Commit on 16.07.2019 - Following changes were made:
 

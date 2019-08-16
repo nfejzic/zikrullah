@@ -180,19 +180,7 @@ body {
 
         svg {
           overflow: visible;
-
-          &.fill {
-            stroke: white;
-            stroke-opacity: 1;
-            stroke-width: 5px;
-            fill: white;
-          }
-          &.stroke {
-            fill: none;
-            stroke: white;
-            stroke-opacity: 1;
-            stroke-width: 5px;
-          }
+          fill: white;
         }
       }
 
