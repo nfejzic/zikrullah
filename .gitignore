@@ -20,6 +20,9 @@
 
 # tags file for nvim ctags
 /tags
+/tags*
+/tags.*
+/tags.temp
 
 npm-debug.log*
 yarn-debug.log*

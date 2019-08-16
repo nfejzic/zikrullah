@@ -5,17 +5,21 @@ import { NameSwapper } from "./NameSwapper";
 let flubber = require("flubber");
 // import { flubber } from "flubber";
 
-export const MorpherWithHooks = () => {
+export const MorpherWithHooks = props => {
   let svgJSON = require("../assets/data/esmaul-husna.json").svgs;
 
   const [svgData, setSvgData] = React.useState(svgJSON);
   const [isLoaded, setLoadState] = React.useState(false);
   const [duration, setDuration] = React.useState(1000);
-  const [counter, setCount] = React.useState(1);
+  const [counter, setCount] = React.useState(0);
   const [isPlaying, setPlaying] = React.useState(false);
-  const [lastTime, setLastTime] = React.useState(Date.now());
+  const [isReady, setReady] = React.useState(false);
+  // const [lastTime, setLastTime] = React.useState(Date.now());
+  const [arraySize, setArraySize] = React.useState(0);
 
   React.useEffect(() => {
+    if (props.duration) setDuration(props.duration);
+
     setSvgData(svgJSON);
     loadSVG();
   }, []);
@@ -48,6 +52,7 @@ export const MorpherWithHooks = () => {
       copy[index].svg = svgPlaceholder[index];
 
       setSvgData(copy);
+      setArraySize(Object.keys(svgData).length);
 
       if (pathsArray.length > 0) getSvgFiles(pathsArray, svgPlaceholder);
       else {
@@ -61,7 +66,7 @@ export const MorpherWithHooks = () => {
     let div = document.createElement("div");
     div.innerHTML = string.trim();
 
-    return div.firstChild;
+    return div.getElementsByTagName("svg")[0];
   }
 
   function morphSVGElementToArray(parentElement, toSVGindex) {
@@ -78,8 +83,8 @@ export const MorpherWithHooks = () => {
     );
 
     //sort the paths here, from smallest to largest!
-    fromPaths.sort((a, b) => sortString(a, b));
-    toPaths.sort((a, b) => sortString(a, b));
+    // fromPaths.sort((a, b) => sortString(a, b));
+    // toPaths.sort((a, b) => sortString(a, b));
 
     animatePaths(
       { parentSVG: fromSVG, paths: fromPaths },
@@ -141,7 +146,7 @@ export const MorpherWithHooks = () => {
       setPlaying(false);
       fromSVG.classList.remove("stroke");
       fromSVG.classList.add("fill");
-      console.log("Juhuuu!");
+      // console.log("Juhuuu!");
     });
   }
 
@@ -200,22 +205,34 @@ export const MorpherWithHooks = () => {
   function morph(container) {
     if (isPlaying) return;
 
+    let toIndex = (counter + 1) % arraySize;
+    setCount(toIndex);
     setPlaying(true);
-    setCount(counter + 1);
-    console.log(counter);
-    let toIndex = counter % Object.keys(svgData).length;
     morphSVGElementToArray(container, toIndex);
 
-    setLastTime(Date.now());
+    // setLastTime(Date.now());
   }
 
-  if (typeof svgData[0].svg !== "undefined") {
-    document.getElementById("container").appendChild(svgData[0].svg);
+  if (arraySize > 0 && !isReady) {
+    if (svgData[0].svg) {
+      let container = document.getElementById("container");
+      if (container) container.appendChild(svgData[0].svg);
+      setReady(true);
+      console.log("DONE!");
+    }
   }
 
   document.getElementById("root").onclick = () => {
     morph("container");
   };
+
+  let prevIndex = 0;
+  let nextIndex = 0;
+
+  if (arraySize) {
+    prevIndex = counter - 1 < 0 ? arraySize - 1 : counter - 1;
+    nextIndex = (counter + 1) % arraySize;
+  }
 
   return (
     <div className="morpher">
@@ -225,7 +242,11 @@ export const MorpherWithHooks = () => {
         xmlns="http://www.w3.org/2000/svg"
       ></svg>
 
-      <NameSwapper name="{ svgData[counter].name }" />
+      <NameSwapper
+        data={[svgData[prevIndex], svgData[counter], svgData[nextIndex]]}
+        indexes={[prevIndex, counter, nextIndex]}
+        duration={duration}
+      />
     </div>
   );
 };

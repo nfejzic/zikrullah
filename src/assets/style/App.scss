@@ -72,6 +72,7 @@ body {
         // border: 1px solid red;
         padding-bottom: 7rem;
         // overflow: hidden;
+        transition-property: all;
 
         div {
           display: flex;
@@ -89,6 +90,7 @@ body {
         }
 
         .enter {
+          transition-property: inherit;
           transition-duration: inherit;
 
           transform: translateY(0px);
@@ -100,7 +102,9 @@ body {
         }
 
         .leave {
+          transition-property: inherit;
           transition-duration: inherit;
+
           transform: translateY(5rem);
 
           position: absolute;

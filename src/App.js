@@ -1,17 +1,17 @@
+import "./assets/style/main.scss";
+
 import React from "react";
 
-//Morpher component
+// Morpher component
 import Morpher from "./components/Morpher";
 import { MorpherWithHooks } from "./components/MorpherWithHooks";
-
-import "./assets/style/main.scss";
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
         <div id="appendToThisDiv">
-          <MorpherWithHooks />
+          <MorpherWithHooks duration="1000" />
           {/* <Morpher /> */}
         </div>
       </header>
