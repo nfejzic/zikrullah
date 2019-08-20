@@ -1,5 +1,11 @@
 # Changelog
 
+## Commit on 20.08.2019 - Following changes are made:
+
+1. Fixed animations on text under SVG.
+2. Fixed animation when going back to the first SVG element in array. Was not cloning the SVG object when appending to the "container". That modified the actual SVG element in the svgData array, which made it impossible to animate to itself.
+3. Implemented more destructuring, and safer way of modifying paths of SVGs.
+
 ## Commit on 16.08.2019 - Following changes are made:
 
 1. Now using function based React Components with React Hooks

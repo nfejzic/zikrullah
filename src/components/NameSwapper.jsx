@@ -5,19 +5,20 @@ import "../assets/style/main.scss";
 export const NameSwapper = props => {
   const [isReady, setIsReady] = React.useState(false);
 
-  let data = props.data;
-  let indexes = props.indexes;
-  let counter = indexes[1];
-  let duration = props.duration;
+  let { data, counter, indexes, duration } = props;
+
+  // let data = props.data;
+  // let counter = props.counter;
+  // let indexes = props.indexes;
+  // let duration = props.duration;
 
   // let prev = indexes[0];
 
   // let prev = 0;
   // let current = 1;
 
-  let evenSVG = indexes[1] % 2 === 0 ? 1 : 0;
-
-  let oddSVG = indexes[1] % 2 !== 0 ? 1 : 0;
+  let evenSVG = counter % 2 === 0 ? 1 : 0;
+  let oddSVG = counter % 2 !== 0 ? 1 : 0;
 
   // console.log("evenSVG: " + evenSVG + " , oddSVG: " + oddSVG);
 
@@ -28,6 +29,8 @@ export const NameSwapper = props => {
       setIsReady(true);
     }
   }
+
+  if (!data[0] || !data[1] || !data[2]) return null;
 
   return (
     <div id="nameContainer">

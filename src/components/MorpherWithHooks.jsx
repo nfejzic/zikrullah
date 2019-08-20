@@ -73,6 +73,8 @@ export const MorpherWithHooks = props => {
     let container = document.getElementById(parentElement);
     let fromSVG = container.firstChild;
     let toSVG = svgData[toSVGindex].svg;
+    console.log(fromSVG);
+    console.log(toSVG);
 
     let fromPaths = Array.from(fromSVG.getElementsByTagName("path"));
     let toPaths = Array.from(toSVG.getElementsByTagName("path"));
@@ -153,10 +155,12 @@ export const MorpherWithHooks = props => {
   }
 
   function equalizeNumOfPaths(from, to) {
-    let fromSVG = from.parentSVG;
-    let toSVG = to.parentSVG;
-    let fromPaths = from.paths;
-    let toPaths = to.paths;
+    let { parentSVG: fromSVG, paths: fromPaths } = from;
+    let { parentSVG: toSVG, paths: toPaths } = to;
+    // let fromSVG = from.parentSVG;
+    // let toSVG = to.parentSVG;
+    // let fromPaths = from.paths;
+    // let toPaths = to.paths;
 
     if (fromPaths.length - toPaths.length !== 0) {
       let case1 = fromPaths.length < toPaths.length;
@@ -176,10 +180,12 @@ export const MorpherWithHooks = props => {
           : toPaths[toPaths.length - 1];
         elemPath.setAttributeNS(null, "d", copyPath.getAttribute("d"));
         if (case1) {
-          fromSVG.getElementsByTagName("g")[0].appendChild(elemPath);
+          let fromEl = fromSVG.getElementsByTagName("g");
+          fromEl.item(fromEl.length - 1).appendChild(elemPath);
           fromPaths.push(elemPath);
         } else {
-          toSVG.getElementsByTagName("g")[0].appendChild(elemPath);
+          let toEl = toSVG.getElementsByTagName("g");
+          toEl.item(toEl.length - 1).appendChild(elemPath);
           toPaths.push(elemPath);
         }
       }
@@ -207,20 +213,21 @@ export const MorpherWithHooks = props => {
   function morph(container) {
     if (isPlaying) return;
 
-    let toIndex = (counter + 1) % arraySize;
-    setCount(toIndex);
+    let toIndex = counter + 1;
     setPlaying(true);
-    morphSVGElementToArray(container, toIndex);
+    morphSVGElementToArray(container, toIndex % arraySize);
+    setCount(toIndex);
 
     // setLastTime(Date.now());
   }
 
   if (arraySize > 0 && !isReady) {
     if (svgData[0].svg) {
+      let svgToAppend = svgData[0].svg.cloneNode(true);
       let container = document.getElementById("container");
-      if (container) container.appendChild(svgData[0].svg);
+      if (container) container.appendChild(svgToAppend);
+      console.log(svgData[0].svg);
       setReady(true);
-      console.log("DONE!");
     }
   }
 
@@ -232,9 +239,13 @@ export const MorpherWithHooks = props => {
   let nextIndex = 0;
 
   if (arraySize) {
-    prevIndex = counter - 1 < 0 ? arraySize - 1 : counter - 1;
+    prevIndex = (counter - 1 < 0 ? arraySize - 1 : counter - 1) % arraySize;
     nextIndex = (counter + 1) % arraySize;
   }
+
+  // console.log(
+  //   "Prev: " + prevIndex + "; current: " + counter + "; next: " + nextIndex
+  // );
 
   return (
     <div className="morpher">
@@ -245,8 +256,13 @@ export const MorpherWithHooks = props => {
       ></svg>
 
       <NameSwapper
-        data={[svgData[prevIndex], svgData[counter], svgData[nextIndex]]}
-        indexes={[prevIndex, counter, nextIndex]}
+        data={[
+          svgData[prevIndex],
+          svgData[counter % arraySize],
+          svgData[nextIndex]
+        ]}
+        counter={counter}
+        indexes={[prevIndex, counter % arraySize, nextIndex]}
         duration={duration}
       />
     </div>
