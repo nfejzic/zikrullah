@@ -93,25 +93,25 @@ body {
           transition-property: inherit;
           transition-duration: inherit;
 
-          transform: translateY(0px);
+          transform: translateY(0px) !important;
           position: absolute;
           // margin: 0px auto;
           left: 0;
           right: 0;
-          opacity: 1;
+          opacity: 1 !important;
         }
 
         .leave {
           transition-property: inherit;
           transition-duration: inherit;
 
-          transform: translateY(5rem);
+          transform: translateY(5rem) !important;
 
           position: absolute;
           margin: 0px auto;
           left: 0;
           right: 0;
-          opacity: 0;
+          opacity: 0 !important;
         }
       }
     }

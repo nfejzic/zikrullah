@@ -1,9 +1,10 @@
 import React from "react";
 import { timeline, interpolate } from "just-animate";
+import SVGMorpher from "../utils/SVGMorpher.js";
 import "../assets/style/main.scss";
 import { NameSwapper } from "./NameSwapper";
+
 let flubber = require("flubber");
-// import { flubber } from "flubber";
 
 export const MorpherWithHooks = props => {
   let svgJSON = require("../assets/data/esmaul-husna.json").svgs;
@@ -14,6 +15,7 @@ export const MorpherWithHooks = props => {
   const [counter, setCount] = React.useState(0);
   const [isPlaying, setPlaying] = React.useState(false);
   const [isReady, setReady] = React.useState(false);
+  // const [movement, setMovement] = React.useState(1);
   // const [lastTime, setLastTime] = React.useState(Date.now());
   const [arraySize, setArraySize] = React.useState(0);
 
@@ -69,156 +71,17 @@ export const MorpherWithHooks = props => {
     return div.getElementsByTagName("svg")[0];
   }
 
-  function morphSVGElementToArray(parentElement, toSVGindex) {
-    let container = document.getElementById(parentElement);
-    let fromSVG = container.firstChild;
-    let toSVG = svgData[toSVGindex].svg;
-    console.log(fromSVG);
-    console.log(toSVG);
-
-    let fromPaths = Array.from(fromSVG.getElementsByTagName("path"));
-    let toPaths = Array.from(toSVG.getElementsByTagName("path"));
-
-    equalizeNumOfPaths(
-      { parentSVG: fromSVG, paths: fromPaths },
-      { parentSVG: toSVG, paths: toPaths }
-    );
-
-    //sort the paths here, from smallest to largest!
-    // fromPaths.sort((a, b) => sortString(a, b));
-    // toPaths.sort((a, b) => sortString(a, b));
-
-    animatePaths(
-      { parentSVG: fromSVG, paths: fromPaths },
-      { parentSVG: toSVG, paths: toPaths },
-      duration
-    );
-  }
-
-  function animatePaths(from, to, duration) {
-    let fromPaths = from.paths;
-    let fromSVG = from.parentSVG;
-
-    // uncomment these lines to set specific classes on static and animating svg
-    // fromSVG.classList.remove("fill");
-    // fromSVG.classList.add("stroke");
-
-    let toPaths = to.paths;
-    let toSVG = to.parentSVG;
-
-    let fromSVGID = fromSVG.id;
-    let t1 = timeline();
-
-    for (let i = 0; i < fromPaths.length; i++) {
-      let fromPathID = (fromPaths[i].id = fromSVGID + "Path" + i);
-
-      let fromD = fromPaths[i].getAttribute("d");
-      let toD = toPaths[i].getAttribute("d");
-
-      let target = "#" + fromPathID;
-
-      t1.fromTo(0, duration, {
-        targets: target,
-        duration: duration,
-        props: {
-          d: {
-            value: [fromD, toD],
-            interpolate: flubber.interpolate
-          }
-        }
-      });
-
-      t1.play();
-    }
-
-    //animate viewbox of the SVG
-    let newViewBox = toSVG.getAttribute("viewBox");
-    let t2 = timeline();
-    t2.animate({
-      targets: fromSVG,
-      duration: duration,
-      props: {
-        viewBox: {
-          value: [fromSVG.getAttribute("viewBox"), newViewBox],
-          interpolate: interpolateViewBox
-        }
-      }
-    });
-    t2.play().on("finish", () => {
-      setPlaying(false);
-      //Uncomment these lines to use specific classes on animated or static svg
-      //
-      // fromSVG.classList.remove("stroke");
-      // fromSVG.classList.add("fill");
-      // console.log("Juhuuu!");
-    });
-  }
-
-  function equalizeNumOfPaths(from, to) {
-    let { parentSVG: fromSVG, paths: fromPaths } = from;
-    let { parentSVG: toSVG, paths: toPaths } = to;
-    // let fromSVG = from.parentSVG;
-    // let toSVG = to.parentSVG;
-    // let fromPaths = from.paths;
-    // let toPaths = to.paths;
-
-    if (fromPaths.length - toPaths.length !== 0) {
-      let case1 = fromPaths.length < toPaths.length;
-      let case2 = fromPaths.length > toPaths.length;
-      let diff = case1
-        ? toPaths.length - fromPaths.length
-        : case2
-        ? fromPaths.length - toPaths.length
-        : 0;
-      for (let i = 0; i < diff; i++) {
-        let elemPath = document.createElementNS(
-          "http://www.w3.org/2000/svg",
-          "path"
-        );
-        let copyPath = case1
-          ? fromPaths[fromPaths.length - 1]
-          : toPaths[toPaths.length - 1];
-        elemPath.setAttributeNS(null, "d", copyPath.getAttribute("d"));
-        if (case1) {
-          let fromEl = fromSVG.getElementsByTagName("g");
-          fromEl.item(fromEl.length - 1).appendChild(elemPath);
-          fromPaths.push(elemPath);
-        } else {
-          let toEl = toSVG.getElementsByTagName("g");
-          toEl.item(toEl.length - 1).appendChild(elemPath);
-          toPaths.push(elemPath);
-        }
-      }
-    }
-  }
-
-  function sortString(a, b) {
-    let aPath = a.getAttribute("d");
-    let bPath = b.getAttribute("d");
-
-    return bPath.length - aPath.length;
-  }
-
-  function interpolateViewBox(left, right) {
-    const leftVal = left.split(" ").map(s => +s);
-    const rightVal = right.split(" ").map(s => +s);
-
-    return offset => {
-      return leftVal
-        .map((l, i) => interpolate(l, rightVal[i], offset))
-        .join(" ");
-    };
-  }
   // Begin the morph!
   function morph(container) {
-    if (isPlaying) return;
-
-    let toIndex = counter + 1;
     setPlaying(true);
-    morphSVGElementToArray(container, toIndex % arraySize);
-    setCount(toIndex);
 
-    // setLastTime(Date.now());
+    let toSvg = svgData[Math.abs((arraySize + counter) % arraySize)].svg;
+
+    let fromSvg = document.getElementById(container).firstChild;
+
+    SVGMorpher.morphFromTo(fromSvg, toSvg, duration, done => {
+      if (done) setPlaying(false);
+    });
   }
 
   if (arraySize > 0 && !isReady) {
@@ -226,26 +89,29 @@ export const MorpherWithHooks = props => {
       let svgToAppend = svgData[0].svg.cloneNode(true);
       let container = document.getElementById("container");
       if (container) container.appendChild(svgToAppend);
-      console.log(svgData[0].svg);
       setReady(true);
     }
   }
 
-  document.getElementById("root").onclick = () => {
-    morph("container");
+  document.getElementById("root").onclick = e => {
+    if (isPlaying) return;
+
+    let move = e.clientX > document.body.clientWidth / 2 ? +1 : -1;
+
+    let toIndex = counter + 1;
+    if (move) toIndex = counter + move;
+
+    let newCount = Math.abs((arraySize + toIndex) % arraySize);
+    if (!svgData[newCount].svg) return;
+
+    setCount(newCount);
   };
 
-  let prevIndex = 0;
-  let nextIndex = 0;
-
-  if (arraySize) {
-    prevIndex = (counter - 1 < 0 ? arraySize - 1 : counter - 1) % arraySize;
-    nextIndex = (counter + 1) % arraySize;
-  }
-
-  // console.log(
-  //   "Prev: " + prevIndex + "; current: " + counter + "; next: " + nextIndex
-  // );
+  React.useEffect(() => {
+    if (arraySize) {
+      morph("container");
+    }
+  }, [counter]);
 
   return (
     <div className="morpher">
@@ -255,16 +121,7 @@ export const MorpherWithHooks = props => {
         xmlns="http://www.w3.org/2000/svg"
       ></svg>
 
-      <NameSwapper
-        data={[
-          svgData[prevIndex],
-          svgData[counter % arraySize],
-          svgData[nextIndex]
-        ]}
-        counter={counter}
-        indexes={[prevIndex, counter % arraySize, nextIndex]}
-        duration={duration}
-      />
+      <NameSwapper index={counter} duration={duration} data={svgData} />
     </div>
   );
 };
