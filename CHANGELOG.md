@@ -1,5 +1,11 @@
 # Changelog
 
+## Commit on 15.09.2019:
+
+1. Added functionality to go backwards.
+2. Changed handling of animation of text under the SVG. Using much better approach now. Previous version used index % 2 to figure out which text to show and swap two different ellements depending on whether index was odd or even. That caused nightmare when trying to go backwards, or by overflow of array ( going from 98 to 0, both are even so it doesn't swap them and animate transition ). Now animating on index change, which is a lot cleaner way.
+3. Exported morph and morph helper code into separate file, will try to release this as a little helper npm module.
+
 ## Commit on 20.08.2019 - Following changes are made:
 
 1. Fixed animations on text under SVG.
