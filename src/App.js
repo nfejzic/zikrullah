@@ -1,26 +1,23 @@
+import "./assets/style/main.scss";
+
 import React from "react";
-// import { interpolate } from "flubber";
-// import { timeline } from "just-animate";
 
-//Morpher component
-import Morpher from "./components/Morpher";
-
-// Custom SVGs
-// import { ReactComponent as AllahCustom } from "./resources/SVG-custom/EH-Artboard 1.svg";
-// import { ReactComponent as ArRahmaanCustom } from "./resources/SVG-custom/EH-Artboard 2.svg";
-// Custom SVGs with holes as separate paths
-import "./style/main.scss";
-
-// function interpolatePoly(from, to) {
-//   return interpolate(from, to);
-// }
+// Morpher component
+import { MorpherWithHooks } from "./components/MorpherWithHooks";
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
         <div id="appendToThisDiv">
-          <Morpher />
+          <MorpherWithHooks duration="1000" />
+          {/* <Morpher /> */}
+          <div id="art-credit">
+            <a href="https://www.vexels.com/vectors/preview/255/seamless-vector-pattern-background">
+              Seamless Vector Pattern Background
+            </a>
+            <p>&nbsp; | designed by user_52 </p>
+          </div>
         </div>
       </header>
     </div>

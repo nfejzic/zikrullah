@@ -1,0 +1,598 @@
+{
+  "svgs": [
+    {
+      "name": "Allahu",
+      "meaning": "Allah",
+      "num": 1,
+      "fileNum": 12
+    },
+    {
+      "name": "Er-Rahmaanu",
+      "meaning": "Samilosni",
+      "num": 2,
+      "fileNum": 7
+    },
+    {
+      "name": "Er-Rahiimu",
+      "meaning": "Milostivi",
+      "num": 3,
+      "fileNum": 20
+    },
+    {
+      "name": "El-Meliku",
+      "meaning": "Vladar",
+      "num": 5,
+      "fileNum": 33
+    },
+    {
+      "name": "El-Kudduusu",
+      "meaning": "Sveti",
+      "num": 5,
+      "fileNum": 47
+    },
+    {
+      "name": "Es-Selaamu",
+      "meaning": "Od mana čisti",
+      "num": 6,
+      "fileNum": 60
+    },
+    {
+      "name": "El-Mu'minu",
+      "meaning": "Koji potvrđuje obećanje i daje sigurnost",
+      "num": 7,
+      "fileNum": 73
+    },
+    {
+      "name": "El-Muhejminu",
+      "meaning": "Koji sve prati i pazi",
+      "num": 8,
+      "fileNum": 85
+    },
+    {
+      "name": "El-Aziizu",
+      "meaning": "Snažni",
+      "num": 9,
+      "fileNum": 98
+    },
+    {
+      "name": "El-Džebbaaru",
+      "meaning": "Silni",
+      "num": 10,
+      "fileNum": 16
+    },
+    {
+      "name": "El-Mutekebbir",
+      "meaning": "Uzvišeni",
+      "num": 11,
+      "fileNum": 28
+    },
+    {
+      "name": "El-Haaliku",
+      "meaning": "Stvoritelj",
+      "num": 12,
+      "fileNum": 40
+    },
+    {
+      "name": "El-Baari'u",
+      "meaning": "Koji divno stvara",
+      "num": 13,
+      "fileNum": 52
+    },
+    {
+      "name": "El-Musavviru",
+      "meaning": "Koji likove daje",
+      "num": 14,
+      "fileNum": 64
+    },
+    {
+      "name": "El-Gaffaaru",
+      "meaning": "Koji prašta",
+      "num": 15,
+      "fileNum": 76
+    },
+    {
+      "name": "El-Kahhaaru",
+      "meaning": "Koji savladava",
+      "num": 16,
+      "fileNum": 88
+    },
+    {
+      "name": "El-Vehhaabu",
+      "meaning": "Koji poklanja",
+      "num": 17,
+      "fileNum": 99
+    },
+    {
+      "name": "Er-Rezzaaku",
+      "meaning": "Koji nafaku daje",
+      "num": 18,
+      "fileNum": 23
+    },
+    {
+      "name": "El-Fettaahu",
+      "meaning": "Koji rješava i otvara",
+      "num": 19,
+      "fileNum": 34
+    },
+    {
+      "name": "El-Aliimu",
+      "meaning": "Sveznajući",
+      "num": 20,
+      "fileNum": 45
+    },
+    {
+      "name": "El-Qaabidu",
+      "meaning": "Koji steže",
+      "num": 21,
+      "fileNum": 56
+    },
+    {
+      "name": "El-Baasitu",
+      "meaning": "Koji pruža",
+      "num": 22,
+      "fileNum": 67
+    },
+    {
+      "name": "El-Haafidu",
+      "meaning": "Koji spušta",
+      "num": 23,
+      "fileNum": 78
+    },
+    {
+      "name": "Er'Raafi'u",
+      "meaning": "Koji diže",
+      "num": 24,
+      "fileNum": 89
+    },
+    {
+      "name": "El'Mu'izzu",
+      "meaning": "Koji uzdiže",
+      "num": 25,
+      "fileNum": 2
+    },
+    {
+      "name": "El-Muzillu",
+      "meaning": "Koji ponižava",
+      "num": 26,
+      "fileNum": 3
+    },
+    {
+      "name": "Es-Semii'u",
+      "meaning": "Koji čuje",
+      "num": 27,
+      "fileNum": 4
+    },
+    {
+      "name": "El-Besiiru",
+      "meaning": "Koji vidi",
+      "num": 28,
+      "fileNum": 5
+    },
+    {
+      "name": "El-Hakemu",
+      "meaning": "Sudac",
+      "num": 29,
+      "fileNum": 6
+    },
+    {
+      "name": "El-'Adlu",
+      "meaning": "Pravedan",
+      "num": 30,
+      "fileNum": 8
+    },
+    {
+      "name": "El-Latiifu",
+      "meaning": "Dobri",
+      "num": 31,
+      "fileNum": 9
+    },
+    {
+      "name": "El-Habiiru",
+      "meaning": "O svemu obavješten",
+      "num": 32,
+      "fileNum": 10
+    },
+    {
+      "name": "El-Haliimu",
+      "meaning": "Blagi",
+      "num": 33,
+      "fileNum": 11
+    },
+    {
+      "name": "El-'Aziimu",
+      "meaning": "Veliki",
+      "num": 34,
+      "fileNum": 13
+    },
+    {
+      "name": "El-Gafuuru",
+      "meaning": "Koji prašta",
+      "num": 35,
+      "fileNum": 14
+    },
+    {
+      "name": "Eš-Šekuuru",
+      "meaning": "Koji je zahvalan",
+      "num": 36,
+      "fileNum": 15
+    },
+    {
+      "name": "El-'Alijju",
+      "meaning": "Uzvišeni",
+      "num": 37,
+      "fileNum": 17
+    },
+    {
+      "name": "El-Kebiiru",
+      "meaning": "Veliki",
+      "num": 38,
+      "fileNum": 18
+    },
+    {
+      "name": "El-Hafiizu",
+      "meaning": "Koji čuva",
+      "num": 39,
+      "fileNum": 19
+    },
+    {
+      "name": "El-Muqiitu",
+      "meaning": "Koji pazi i izdržava",
+      "num": 40,
+      "fileNum": 21
+    },
+    {
+      "name": "El-Hasiibu",
+      "meaning": "Koji obračun vodi",
+      "num": 41,
+      "fileNum": 22
+    },
+    {
+      "name": "El-Dželiilu",
+      "meaning": "Veličanstveni",
+      "num": 42,
+      "fileNum": 24
+    },
+    {
+      "name": "El-Keriimu",
+      "meaning": "Plemeniti",
+      "num": 43,
+      "fileNum": 25
+    },
+    {
+      "name": "Er-Reqiibu",
+      "meaning": "Koji prati svaku kretnju",
+      "num": 44,
+      "fileNum": 26
+    },
+    {
+      "name": "El-Mudžiibu",
+      "meaning": "Koji molbe prima",
+      "num": 45,
+      "fileNum": 27
+    },
+    {
+      "name": "El-Vaasi'u",
+      "meaning": "Koji Milošću i Znanjem sve zauzima",
+      "num": 46,
+      "fileNum": 29
+    },
+    {
+      "name": "El-Hakiimu",
+      "meaning": "Mudri",
+      "num": 47,
+      "fileNum": 30
+    },
+    {
+      "name": "El-Veduudu",
+      "meaning": "Koji voli",
+      "num": 48,
+      "fileNum": 31
+    },
+    {
+      "name": "El-Mudžiidu",
+      "meaning": "Slavljeni",
+      "num": 49,
+      "fileNum": 32
+    },
+    {
+      "name": "El-Baa'isu",
+      "meaning": "Koji proživljava",
+      "num": 50,
+      "fileNum": 35
+    },
+    {
+      "name": "Eš-Šehiidu",
+      "meaning": "Koji je svemu svjedok",
+      "num": 51,
+      "fileNum": 36
+    },
+    {
+      "name": "El-Hakku",
+      "meaning": "Vrhovna Istina",
+      "num": 52,
+      "fileNum": 37
+    },
+    {
+      "name": "El-Vekiilu",
+      "meaning": "Koji se stara i brine",
+      "num": 53,
+      "fileNum": 38
+    },
+    {
+      "name": "El-Qavijju",
+      "meaning": "Jaki",
+      "num": 54,
+      "fileNum": 39
+    },
+    {
+      "name": "El-Metiinu",
+      "meaning": "Čvrsti",
+      "num": 55,
+      "fileNum": 41
+    },
+    {
+      "name": "El-Velijju",
+      "meaning": "Zaštitnik",
+      "num": 56,
+      "fileNum": 42
+    },
+    {
+      "name": "El-Hamiidu",
+      "meaning": "Hvaljeni",
+      "num": 57,
+      "fileNum": 43
+    },
+    {
+      "name": "El-Muhsii",
+      "meaning": "Koji i sitnice obuhvata i broj im zna",
+      "num": 58,
+      "fileNum": 44
+    },
+    {
+      "name": "El-Mubdii'u",
+      "meaning": "Koji iz početka stvara",
+      "num": 59,
+      "fileNum": 46
+    },
+    {
+      "name": "El-Mu'iidu",
+      "meaning": "Koji poslije smrti u život vraća",
+      "num": 60,
+      "fileNum": 48
+    },
+    {
+      "name": "El-Muhjii",
+      "meaning": "Koji život daje",
+      "num": 61,
+      "fileNum": 49
+    },
+    {
+      "name": "El-Mumiitu",
+      "meaning": "Koji smrt daje",
+      "num": 62,
+      "fileNum": 50
+    },
+    {
+      "name": "El-Hajju",
+      "meaning": "Živi",
+      "num": 63,
+      "fileNum": 51
+    },
+    {
+      "name": "El-Qajjuumu",
+      "meaning": "Koji sve održava",
+      "num": 64,
+      "fileNum": 53
+    },
+    {
+      "name": "El-Vaadžidu",
+      "meaning": "Imućni",
+      "num": 65,
+      "fileNum": 54
+    },
+    {
+      "name": "El-Maadžidu",
+      "meaning": "Slavni",
+      "num": 66,
+      "fileNum": 55
+    },
+    {
+      "name": "El-Vaahidu",
+      "meaning": "Jedini",
+      "num": 67,
+      "fileNum": 57
+    },
+    {
+      "name": "Es-Samedu",
+      "meaning": "Kome se svako obraća",
+      "num": 68,
+      "fileNum": 58
+    },
+    {
+      "name": "El-Qaadiru",
+      "meaning": "Moćni",
+      "num": 69,
+      "fileNum": 59
+    },
+    {
+      "name": "El-Muqtediru",
+      "meaning": "Koji sve može",
+      "num": 70,
+      "fileNum": 61
+    },
+    {
+      "name": "El-Muqaddimu",
+      "meaning": "Koji unapređuje",
+      "num": 71,
+      "fileNum": 62
+    },
+    {
+      "name": "El-Mu'ehhiru",
+      "meaning": "Koji zapostavlja",
+      "num": 72,
+      "fileNum": 63
+    },
+    {
+      "name": "El-Evvelu",
+      "meaning": "Prvi",
+      "num": 73,
+      "fileNum": 65
+    },
+    {
+      "name": "El-Aahiru",
+      "meaning": "Posljednji",
+      "num": 74,
+      "fileNum": 66
+    },
+    {
+      "name": "Ez-Zaahiru",
+      "meaning": "Jasni",
+      "num": 75,
+      "fileNum": 68
+    },
+    {
+      "name": "El-Baatinu",
+      "meaning": "Skriveni",
+      "num": 76,
+      "fileNum": 69
+    },
+    {
+      "name": "El-Vaalii",
+      "meaning": "Upravitelj",
+      "num": 77,
+      "fileNum": 70
+    },
+    {
+      "name": "El-Mute'aali",
+      "meaning": "Preuzvišeni",
+      "num": 78,
+      "fileNum": 71
+    },
+    {
+      "name": "El-Birru",
+      "meaning": "Dobročinitelj",
+      "num": 79,
+      "fileNum": 72
+    },
+    {
+      "name": "Et-Tevvaabu",
+      "meaning": "Koji pokajanje mnogo prima",
+      "num": 80,
+      "fileNum": 74
+    },
+    {
+      "name": "El-Muntekim",
+      "meaning": "Koji ne ostaje dužan",
+      "num": 81,
+      "fileNum": 75
+    },
+    {
+      "name": "El-'Afuvvu",
+      "meaning": "Koji prašta",
+      "num": 82,
+      "fileNum": 77
+    },
+    {
+      "name": "Er-Re'uufu",
+      "meaning": "Samilosni",
+      "num": 83,
+      "fileNum": 79
+    },
+    {
+      "name": "El-Maalikul-mulki",
+      "meaning": "Vlasnik svake vlasti i carstva",
+      "num": 84,
+      "fileNum": 80
+    },
+    {
+      "name": "Zul dželali vel ikrami",
+      "meaning": "Kome pripada veličanstvo i čast",
+      "num": 85,
+      "fileNum": 81
+    },
+    {
+      "name": "El-Muksitu",
+      "meaning": "Koji pravdu dijeli",
+      "num": 86,
+      "fileNum": 82
+    },
+    {
+      "name": "El-Džaami'u",
+      "meaning": "Koji sakuplja",
+      "num": 87,
+      "fileNum": 83
+    },
+    {
+      "name": "El-Ganijju",
+      "meaning": "Bogati",
+      "num": 88,
+      "fileNum": 84
+    },
+    {
+      "name": "El-Mugnii",
+      "meaning": "Koji bogatstvo daje",
+      "num": 89,
+      "fileNum": 86
+    },
+    {
+      "name": "El-Maani'u",
+      "meaning": "Koji bogatstva lišava",
+      "num": 90,
+      "fileNum": 87
+    },
+    {
+      "name": "Ed-Daaru",
+      "meaning": "Koji stvara štetu",
+      "num": 91,
+      "fileNum": 90
+    },
+    {
+      "name": "En-Naafi'u",
+      "meaning": "Koji daje korist",
+      "num": 92,
+      "fileNum": 91
+    },
+    {
+      "name": "En-Nuuru",
+      "meaning": "Svjetlost",
+      "num": 93,
+      "fileNum": 92
+    },
+    {
+      "name": "El-Haadii",
+      "meaning": "Koji upućuje na pravi put",
+      "num": 94,
+      "fileNum": 93
+    },
+    {
+      "name": "El-Bedii'u",
+      "meaning": "Besprimjerni Tvorac iz ništa",
+      "num": 95,
+      "fileNum": 94
+    },
+    {
+      "name": "El-Baaqii",
+      "meaning": "Vječni",
+      "num": 96,
+      "fileNum": 95
+    },
+    {
+      "name": "El-Vaarisu",
+      "meaning": "Nasljednik",
+      "num": 97,
+      "fileNum": 96
+    },
+    {
+      "name": "Er-Rešiidu",
+      "meaning": "Koji upućuje na potrebe i koristi",
+      "num": 98,
+      "fileNum": 97
+    },
+    {
+      "name": "Es-Sabuuru",
+      "meaning": "Strpljivi, koji ne žuri sa kaznom",
+      "num": 99,
+      "fileNum": 1
+    }
+  ]
+}

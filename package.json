@@ -4,6 +4,7 @@
   "private": true,
   "homepage": "https://zikrullah.app/",
   "dependencies": {
+    "eslint-config-react-app": "^5.0.1",
     "flubber": "^0.4.2",
     "just-animate": "^2.6.2",
     "kute.js": "^1.6.6",
@@ -15,11 +16,14 @@
     "react-letter-morph": "0.0.5",
     "react-morph": "^0.4.0",
     "react-pose": "^4.0.8",
-    "react-scripts": "3.0.1",
+    "react-scripts": "^3.0.1",
     "react-spring": "^8.0.25",
     "react-svg-morph": "^0.2.1",
     "snapsvg": "^0.5.1",
-    "snapsvg-cjs": "0.0.6"
+    "snapsvg-cjs": "0.0.6",
+    "svg-morpher": "^1.0.1",
+    "ts-pnp": "^1.1.2",
+    "tsutils": "^3.14.0"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -31,7 +35,11 @@
     "extends": "react-app"
   },
   "browserslist": {
-    "production": [">0.2%", "not dead", "not op_mini all"],
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
     "development": [
       "last 1 chrome version",
       "last 1 firefox version",
