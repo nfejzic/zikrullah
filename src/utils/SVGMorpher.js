@@ -83,7 +83,9 @@ const SVGMorpher = {
       t1.fromTo(0, duration, {
         targets: target,
         duration: duration,
-        props: { d: { value: [fromD, toD], interpolate: flubber.interpolate } }
+        props: {
+          d: { value: [fromD, toD], interpolate: this.interpolateWithFlubber }
+        }
       });
 
       t1.play();
@@ -106,6 +108,10 @@ const SVGMorpher = {
       // report as animation done!
       callback(true);
     });
+  },
+
+  interpolateWithFlubber(fromShape, toShape) {
+    return flubber.interpolate(fromShape, toShape, { maxSegmentLength: 5 });
   },
 
   // equalize the number of paths on two SVGs

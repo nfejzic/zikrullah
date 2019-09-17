@@ -20,6 +20,10 @@ body {
 
 .App-header {
   background-color: #282c34;
+  // background-image: url("../resources/images/abstract-arabesque-art-2268535.jpg");
+  background-image: url("../resources/images/path80.png");
+  background-size: 25%;
+  // background-blend-mode: multiply;
   min-width: 100vw;
   min-height: 100vh;
   display: flex;
@@ -27,7 +31,7 @@ body {
   align-items: center;
   justify-content: center;
   font-size: 3rem;
-  color: white;
+  // color: white;
 }
 
 .App-link {
@@ -37,18 +41,54 @@ body {
 #appendToThisDiv {
   width: 100%;
   height: 100vh;
+  background-color: #282c34cc;
+  // background-image: radial-gradient(#00000050 00%, #00000000 70%);
+  // background-image: radial-gradient(#00000055 00%, #282c3400 100%);
   margin: 0;
   display: flex;
+  flex-direction: column;
   align-items: center;
+  justify-content: flex-start;
   overflow: hidden;
+
+  #art-credit {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+    font-size: 0.75rem;
+    margin: 0.5rem;
+    height: 1rem;
+
+    p {
+      color: #282c34;
+      filter: brightness(3);
+    }
+    a {
+      // all: unset;
+      // align-self: center;
+      color: #76afe3aa !important;
+
+      font-weight: bold;
+      text-decoration: none;
+
+      &:visited {
+        all: unset;
+      }
+    }
+  }
+
+  p {
+    color: white;
+  }
 
   .morpher {
     pointer-events: none;
     display: flex;
-    // padding: 2rem;
     width: 80%;
-    height: 100%;
-    margin: auto;
+    flex-grow: 1;
+    // height: auto;
+    // margin: 1rem;
     box-sizing: border-box;
     padding: 5rem;
     flex-direction: column;
@@ -84,7 +124,7 @@ body {
             margin: 0.5rem auto;
 
             &.EH-name {
-              color: #61dafb;
+              color: #76afe3;
             }
           }
         }
@@ -133,8 +173,9 @@ body {
       // box-sizing: content-box;
 
       svg {
-        fill: white;
-        // stroke: white;
+        fill: #bfe6f9;
+        // stroke: #61dafb;
+        // background-color: red;
         overflow: visible;
 
         // &:hover {
@@ -148,10 +189,15 @@ body {
 
 @media (min-width: 320px) and (max-width: 480px) {
   .App-header {
-    font-size: 1.5rem;
+    background-size: 50%;
+    font-size: 2rem;
   }
 
   #appendToThisDiv {
+    #art-credit {
+      font-size: 0.5rem;
+    }
+
     .morpher {
       display: flex;
       // padding: 2rem;

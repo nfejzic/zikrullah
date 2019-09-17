@@ -21,6 +21,7 @@
     "react-svg-morph": "^0.2.1",
     "snapsvg": "^0.5.1",
     "snapsvg-cjs": "0.0.6",
+    "svg-morpher": "^1.0.1",
     "ts-pnp": "^1.1.2",
     "tsutils": "^3.14.0"
   },

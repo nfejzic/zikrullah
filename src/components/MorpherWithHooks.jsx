@@ -1,10 +1,8 @@
 import React from "react";
-import { timeline, interpolate } from "just-animate";
+// import SVGMorpher from "svg-morpher";
 import SVGMorpher from "../utils/SVGMorpher.js";
 import "../assets/style/main.scss";
 import { NameSwapper } from "./NameSwapper";
-
-let flubber = require("flubber");
 
 export const MorpherWithHooks = props => {
   let svgJSON = require("../assets/data/esmaul-husna.json").svgs;
