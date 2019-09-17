@@ -1,5 +1,11 @@
 # Changelog
 
+## Commit on 18.09.2019:
+
+1. Created Icon / Favicon, edited manifest.json to use the new icon.
+2. Cleaned up esmaul-husna.json file.
+3. Design improvements, better color theming. Using background image.
+
 ## Commit on 15.09.2019:
 
 1. Added functionality to go backwards.
