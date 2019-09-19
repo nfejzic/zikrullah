@@ -43,7 +43,7 @@ body {
   height: 100vh;
   background-color: #282c34cc;
   // background-image: radial-gradient(#00000050 00%, #00000000 70%);
-  // background-image: radial-gradient(#00000055 00%, #282c3400 100%);
+  background-image: radial-gradient(#282c3461 00%, #282c3400 100%);
   margin: 0;
   display: flex;
   flex-direction: column;
@@ -79,7 +79,7 @@ body {
   }
 
   p {
-    color: white;
+    color: #bfe6f9;
   }
 
   .morpher {
@@ -177,6 +177,7 @@ body {
         // stroke: #61dafb;
         // background-color: red;
         overflow: visible;
+        transform: translate3d(0, 0, 0);
 
         // &:hover {
         //   fill: green;
@@ -226,7 +227,7 @@ body {
 
         svg {
           overflow: visible;
-          fill: white;
+          // fill: white;
         }
       }
 

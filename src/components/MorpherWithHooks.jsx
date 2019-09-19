@@ -1,6 +1,6 @@
 import React from "react";
-// import SVGMorpher from "svg-morpher";
-import SVGMorpher from "../utils/SVGMorpher.js";
+import SVGMorpher from "svg-morpher";
+// import SVGMorpher from "../utils/SVGMorpher.js";
 import "../assets/style/main.scss";
 import { NameSwapper } from "./NameSwapper";
 
