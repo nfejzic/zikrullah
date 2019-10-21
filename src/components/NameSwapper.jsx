@@ -1,6 +1,7 @@
 import React from "react";
 
 import "../assets/style/main.scss";
+import { setTimeout } from "timers";
 
 export const NameSwapper = props => {
   const [isReady, setIsReady] = React.useState(false);
@@ -13,7 +14,8 @@ export const NameSwapper = props => {
 
   let { index, duration, data } = props;
 
-  // create <div> with <p> tags with wanted values. In this case, Transcription of name and meaning
+  // create <div> with <p> tags with wanted values. In this case, Transcription
+  // of name and meaning
   function createTextElement() {
     // create div and child p elements
     let pName = document.createElement("p");
@@ -24,10 +26,12 @@ export const NameSwapper = props => {
     pName.innerHTML = data[current].name;
     pMeaning.innerHTML = data[current].meaning;
 
-    // assign custom styling to one of elements ( name is accentuated with some color )
+    // assign custom styling to one of elements ( name is accentuated with some
+    // color )
     pName.className = "EH-name";
 
-    // assign initial style to div, hidden and a little lower... used for transition effect
+    // assign initial style to div, hidden and a little lower... used for
+    // transition effect
     div.className = "leave";
     div.addEventListener("transitionend", removeSelf);
 
@@ -38,12 +42,14 @@ export const NameSwapper = props => {
     return div;
   }
 
-  // remove element when it's meant to "leave" and be hidden. It has no use anymore
+  // remove element when it's meant to "leave" and be hidden. It has no use
+  // anymore
   function removeSelf(event) {
     let parent = event.target.parentNode;
     let child = event.target;
 
-    // This is called on transition end. But execute removal ONLY if element "left" the scene!
+    // This is called on transition end. But execute removal ONLY if element
+    // "left" the scene!
     if (child.className === "leave") {
       if (parent && child) parent.removeChild(child);
     }
@@ -52,7 +58,9 @@ export const NameSwapper = props => {
   function addNewElement(container) {
     let newEl = createTextElement();
     container.appendChild(newEl);
-    requestAnimationFrame(() => (newEl.className = "enter"));
+    // This is a temporary fix for iOS13. requestAnimationFrame is not working correctly in iOS13.
+    setTimeout(() => (newEl.className = "enter"), 1);
+    // window.requestAnimationFrame(() => (newEl.className = "enter"));
   }
 
   let curr = indexes[indexes.length === 0 ? 0 : indexes.length - 1];
