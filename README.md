@@ -1,5 +1,10 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+# Zikrullah
+
+This is a web-app, which helped me learn a lot about ReactJS.
+It is live at : https://zikrullah.app/
+
 ## Available Scripts
 
 In the project directory, you can run:
