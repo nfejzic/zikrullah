@@ -8,7 +8,7 @@
     "flubber": "^0.4.2",
     "just-animate": "^2.6.2",
     "kute.js": "^1.6.6",
-    "node-sass": "^4.12.0",
+    "node-sass": "^7.0.0",
     "polymorph-js": "^0.2.4",
     "popmotion": "^8.6.10",
     "react": "^16.8.6",
